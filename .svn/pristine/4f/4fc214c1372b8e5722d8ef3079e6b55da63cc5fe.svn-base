@@ -1,0 +1,73 @@
+package jpp.hillclimbing;
+
+import java.util.Arrays;
+
+public class Problem {
+
+	int numCPUs;
+	int[] jobs;
+
+	public Problem(int numCPUs, int[] jobs) throws IllegalArgumentException {
+		if (jobs == null) {
+			throw new IllegalArgumentException("falsche Eingabe von Jobs!");
+		}
+		if (numCPUs < 2 || jobs.length < 2) {
+			throw new IllegalArgumentException("kleine Anzahl von CPUs und Jobs");
+		}
+
+		for (int i = 0; i < jobs.length; i++) {
+			if (jobs[i] < 1) {
+				throw new IllegalArgumentException(" alle Einträge von Jobs müssen größer 0 sein!");
+			}
+		}
+		this.numCPUs = numCPUs;
+		this.jobs = jobs;
+
+	}
+
+	public int getCPUs() {
+		return numCPUs;
+	}
+
+	public int getJobs() {
+		return jobs.length;
+	}
+
+	public int getRuntime(int job) {
+		if (job < 0 || job > jobs.length - 1) {
+			throw new IndexOutOfBoundsException("falsche Eingabe!!!");
+		} else {
+			return jobs[job];
+		}
+
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(jobs);
+		result = prime * result + numCPUs;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Problem other = (Problem) obj;
+		if (!Arrays.equals(jobs, other.jobs))
+			return false;
+		if (numCPUs != other.numCPUs)
+			return false;
+		return true;
+	}
+//	fmeknvkjewnvmnew v
+//	rvweknrvmnwerv
+//	er,mnvm,er
+
+}
